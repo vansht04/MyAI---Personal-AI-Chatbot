@@ -18,7 +18,7 @@ interface ChatPageProps {
 }
 
 const SUGGESTION_PROMPTS = [
-  "Build me an app",
+  "Give me a red sauce pasta recipe",
   "Write a Python function to sort a list",
   "What are the best practices for React performance?",
   "Help me draft a professional email",
