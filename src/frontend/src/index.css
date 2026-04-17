@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk";
+    --font-body: "Satoshi";
+    --font-mono: "JetBrains Mono";
+    --radius: 0.75rem;
+
+    /* ── LIGHT MODE (default) ── */
+    /* Soft lavender/white backgrounds */
+    --background: 0.97 0.008 285;
+    --foreground: 0.13 0.02 285;
+    --card: 0.99 0.004 285;
+    --card-foreground: 0.13 0.02 285;
+    --popover: 0.99 0.004 285;
+    --popover-foreground: 0.13 0.02 285;
+
+    /* Primary: vivid violet (same hue, slightly deeper for contrast on light) */
+    --primary: 0.55 0.22 300;
+    --primary-foreground: 0.99 0.004 285;
+
+    --secondary: 0.93 0.015 285;
+    --secondary-foreground: 0.28 0.02 285;
+    --muted: 0.93 0.015 285;
+    --muted-foreground: 0.48 0.018 285;
+
+    /* Accent: warm gold/amber */
+    --accent: 0.68 0.16 68;
+    --accent-foreground: 0.99 0.004 285;
+
+    --destructive: 0.52 0.2 25;
+    --destructive-foreground: 0.98 0.01 25;
+
+    --border: 0.88 0.014 285;
+    --input: 0.88 0.014 285;
+    --ring: 0.55 0.22 300;
+
+    --warning: 0.72 0.16 68;
+    --warning-foreground: 0.18 0.04 68;
+    --warning-muted: 0.93 0.04 68;
+    --warning-border: 0.78 0.1 68;
+
+    --success: 0.62 0.14 165;
+    --success-foreground: 0.96 0.04 165;
+    --success-muted: 0.93 0.04 165;
+    --success-border: 0.7 0.1 165;
+
+    --chart-1: 0.55 0.22 300;
+    --chart-2: 0.68 0.16 68;
+    --chart-3: 0.55 0.18 330;
+    --chart-4: 0.58 0.16 260;
+    --chart-5: 0.56 0.14 195;
+
+    --sidebar: 0.95 0.012 285;
+    --sidebar-foreground: 0.13 0.02 285;
+    --sidebar-primary: 0.55 0.22 300;
+    --sidebar-primary-foreground: 0.99 0.004 285;
+    --sidebar-accent: 0.9 0.018 285;
+    --sidebar-accent-foreground: 0.28 0.02 285;
+    --sidebar-border: 0.86 0.016 285;
+    --sidebar-ring: 0.55 0.22 300;
+  }
+
+  .dark {
+    /* ── DARK MODE ── */
+    --background: 0.13 0.018 285;
+    --foreground: 0.96 0.008 285;
+    --card: 0.17 0.02 285;
+    --card-foreground: 0.96 0.008 285;
+    --popover: 0.17 0.02 285;
+    --popover-foreground: 0.96 0.008 285;
+
+    --primary: 0.68 0.22 300;
+    --primary-foreground: 0.98 0.004 285;
+
+    --secondary: 0.21 0.025 285;
+    --secondary-foreground: 0.88 0.01 285;
+    --muted: 0.21 0.025 285;
+    --muted-foreground: 0.56 0.012 285;
+
+    --accent: 0.78 0.18 68;
+    --accent-foreground: 0.13 0.018 285;
+
+    --destructive: 0.55 0.2 25;
+    --destructive-foreground: 0.95 0.01 25;
+
+    --border: 0.26 0.025 285;
+    --input: 0.26 0.025 285;
+    --ring: 0.68 0.22 300;
+
+    --warning: 0.78 0.16 68;
+    --warning-foreground: 0.96 0.04 68;
+    --warning-muted: 0.2 0.04 68;
+    --warning-border: 0.32 0.07 68;
+
+    --success: 0.72 0.14 165;
+    --success-foreground: 0.95 0.04 165;
+    --success-muted: 0.2 0.03 165;
+    --success-border: 0.32 0.05 165;
+
+    --chart-1: 0.68 0.22 300;
+    --chart-2: 0.78 0.18 68;
+    --chart-3: 0.62 0.18 330;
+    --chart-4: 0.72 0.16 260;
+    --chart-5: 0.65 0.14 195;
+
+    --sidebar: 0.15 0.022 285;
+    --sidebar-foreground: 0.96 0.008 285;
+    --sidebar-primary: 0.68 0.22 300;
+    --sidebar-primary-foreground: 0.98 0.004 285;
+    --sidebar-accent: 0.21 0.025 285;
+    --sidebar-accent-foreground: 0.88 0.01 285;
+    --sidebar-border: 0.22 0.025 285;
+    --sidebar-ring: 0.68 0.22 300;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Warning semantic tokens */
+  .bg-warning {
+    background-color: oklch(var(--warning));
+  }
+  .bg-warning-muted {
+    background-color: oklch(var(--warning-muted));
+  }
+  .text-warning {
+    color: oklch(var(--warning));
+  }
+  .text-warning-foreground {
+    color: oklch(var(--warning-foreground));
+  }
+  .border-warning {
+    border-color: oklch(var(--warning-border));
+  }
+
+  /* Success semantic tokens */
+  .bg-success {
+    background-color: oklch(var(--success));
+  }
+  .bg-success-muted {
+    background-color: oklch(var(--success-muted));
+  }
+  .text-success {
+    color: oklch(var(--success));
+  }
+  .text-success-foreground {
+    color: oklch(var(--success-foreground));
+  }
+  .border-success {
+    border-color: oklch(var(--success-border));
+  }
+
+  .message-user {
+    @apply bg-primary text-primary-foreground rounded-3xl;
+  }
+
+  .message-ai {
+    @apply bg-secondary text-secondary-foreground rounded-3xl;
+  }
+
+  .chat-input-focus {
+    @apply border-ring ring-offset-background ring-ring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  }
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/assets/fonts/Satoshi.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+}

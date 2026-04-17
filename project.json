@@ -1,0 +1,22 @@
+{
+  "overview": "A ChatGPT-like AI chatbot with persistent conversation history, a free message tier for anonymous users, and login-gated extended access via Internet Identity. OpenAI is called securely from the backend.",
+  "features": [
+    "Chat interface with AI responses powered by OpenAI",
+    "Persistent conversation history across sessions",
+    "Sidebar with all past conversations",
+    "Free tier: 20 messages before login is required",
+    "Internet Identity login for unlimited access",
+    "Admin panel to configure OpenAI API key securely",
+    "Per-user isolated conversation history"
+  ],
+  "category": "productivity",
+  "tags": [
+    "ai",
+    "chatbot",
+    "chatgpt",
+    "openai",
+    "conversation",
+    "productivity"
+  ],
+  "last_updated": "2026-04-12T17:55:17.361Z"
+}

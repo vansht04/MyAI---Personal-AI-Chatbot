@@ -1,0 +1,85 @@
+type http_request_result = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type http_header = 
+ record {
+   name: text;
+   value: text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: http_request_result;
+ };
+type Timestamp = int;
+type SendMessageResult = 
+ variant {
+   freeTierLimitReached;
+   notFound;
+   ok: Message;
+   unauthorized;
+ };
+type MessageRole = 
+ variant {
+   assistant;
+   user;
+ };
+type Message = 
+ record {
+   content: text;
+   role: MessageRole;
+   timestamp: Timestamp;
+ };
+type ConversationSummary = 
+ record {
+   createdAt: int;
+   id: nat;
+   messageCount: nat;
+   title: text;
+   updatedAt: int;
+ };
+type ConversationId = nat;
+type Conversation = 
+ record {
+   createdAt: Timestamp;
+   id: ConversationId;
+   messages: vec Message;
+   owner: principal;
+   title: text;
+   updatedAt: Timestamp;
+ };
+service : {
+  _initializeAccessControl: () -> ();
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  createConversation: () -> (ConversationId);
+  deleteConversation: (id: ConversationId) -> (bool);
+  getAnonymousMessageCount: () -> (nat) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getConversation: (id: ConversationId) -> (opt Conversation) query;
+  isAdmin: () -> (bool) query;
+  isCallerAdmin: () -> (bool) query;
+  listConversations: () -> (vec ConversationSummary) query;
+  sendMessage: (conversationId: ConversationId, "text": text) ->
+   (SendMessageResult);
+  transform: (input: TransformationInput) -> (TransformationOutput) query;
+  updateConversationTitle: (conversationId: ConversationId, newTitle:
+   text) -> (variant {
+               err: text;
+               ok;
+             });
+}

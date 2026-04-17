@@ -1,0 +1,51 @@
+// Version: 1.0.0
+type ConversationId__966455625 = Nat;
+type Conversation__782765712 =
+  {
+    createdAt : Timestamp__301639476;
+    id : ConversationId__966455625;
+    messages : [Message__528636030];
+    owner : Principal;
+    title : Text;
+    updatedAt : Timestamp__301639476
+  };
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type MessageRole__49436217 = {#assistant; #user};
+type Message__528636030 =
+  {
+    content : Text;
+    role : MessageRole__49436217;
+    timestamp : Timestamp__301639476
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type Timestamp__301639476 = Int;
+type UserRole__1054455867 = {#admin; #guest; #user};
+actor {
+  stable FREE_TIER_LIMIT : Nat;
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__605269027<Principal, UserRole__1054455867>
+    };
+  stable anonCounts :
+    {var root : Node__46230540<Principal, Nat>; var size : Nat__490723111};
+  stable conversations :
+    {
+      var root :
+        Node__46230540<ConversationId__966455625, Conversation__782765712>;
+      var size : Nat__490723111
+    };
+  stable counters :
+    {var root : Node__46230540<Text, Nat>; var size : Nat__490723111}
+};
